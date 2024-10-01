@@ -1,23 +1,59 @@
-const FormAddSubs = () => {
+import { useState } from "react";
+
+/* eslint-disable react/prop-types */
+const FormAddSubs = ({ setType, setPrice, type, price, setSubs, subs, editId, setEditId }) => {
+    const [error, setError] = useState(false)
+
+    const handleSubs = e => {
+        e.preventDefault();
+        if (price === "" || Number(price) < 0 || type === "" ) {
+            setError(true);
+            return;
+        }
+        setError(false);
+        if (editId != "") {
+            setEditId("");
+            const newSubs = subs.map(item => {
+                if (item.id === editId) {
+                    item.type = type;
+                    item.price = price;
+                }
+                return item;
+            })
+            setSubs(newSubs);
+        } else {
+            const data = {
+                type : type,
+                price : Number(price),
+                id: Date.now()
+            }
+            setSubs([...subs, data]);
+        }
+        setPrice("");
+        setType("");
+    }
+
     return ( 
         <div className="add-subscription">
             <h3>Agregar servicio</h3>
-            <form action="">
+            <form onSubmit={ handleSubs }>
                 <p>Servicios</p>
-                <select name="" id="">
+                <select onChange={e => setType(e.target.value)} value={type} >
                     <option value="">-- Elegir --</option>
                     <option value="netflix">-- Netflix --</option>
                     <option value="disneyPlus">-- Disney plus  --</option>
-                    <option value="hboMax">-- HBO Max --</option>
+                    <option value="HBOMax">-- HBO Max --</option>
                     <option value="starPlus">-- Star Plus --</option>
                     <option value="primeVideo">-- Prime Video --</option>
                     <option value="spotify">-- Spotify --</option>
                     <option value="appleTv">-- Apple TV --</option>
                 </select>
                 <p>Precio</p>
-                <input type="number" placeholder="20$" />
-                <input type="submit" value="Agregar" />
+                <input type="number" placeholder="20$" onChange={e => setPrice(e.target.value)} value={price} />
+                { editId != "" ? <input type="submit" value="Guardar" /> : <input type="submit" value="Agregar" /> }
+                
             </form>
+            { error ? <p className="error">Campos invalidos</p> : null}
         </div>
      );
 }
