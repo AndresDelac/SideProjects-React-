@@ -16,9 +16,9 @@ const Balance = ({ count, subs, spent, setSpent }) => {
 
   return (
     <div className="balance">
-      <h3 className="">Presupuesto: {moneyFormat(count)}</h3>
-      <h3 className="">Gastado: {moneyFormat(spent)}</h3>
-      <h3 className="">Disponible: {moneyFormat(count - spent)}</h3>
+      <h3>Presupuesto: <span className="presupuesto">{moneyFormat(count)}</span></h3>
+      <h3>Gastado: <span className="gastado">{moneyFormat(spent)}</span></h3>
+      <h3>Disponible: <span className="disponible">{moneyFormat(count - spent)}</span></h3>
     </div>
   );
 };

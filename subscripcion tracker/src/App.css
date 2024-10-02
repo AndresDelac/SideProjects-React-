@@ -162,3 +162,14 @@ p.author a {
   color: #000;
 }
 
+.presupuesto{
+  color: #005ebd;
+}
+
+.gastado{
+  color: #d52121;
+}
+
+.disponible{
+  color: #00ba44;
+}
