@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { calcularTotal } from "../helpers";
 
-const Form = ({ cantidad, setCantidad, plazo, setPlazo }) => {
+const Form = ({ cantidad, setCantidad, plazo, setPlazo, setTotal }) => {
 
     const [error ,setError] = useState(false);
 
@@ -16,6 +16,7 @@ const Form = ({ cantidad, setCantidad, plazo, setPlazo }) => {
         setError(false);
 
        const total = calcularTotal(cantidad, plazo);
+       setTotal(total);
         console.log(total);
         
     }
