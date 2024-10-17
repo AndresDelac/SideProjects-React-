@@ -15,7 +15,8 @@ const AddCategory = ({ setCategory }) => {
         }
         setError(false);
         setCategory(value);
-        console.log("Enter search");
+        setValue("");
+        // console.log("Enter search");
         
     }
 
@@ -24,6 +25,7 @@ const AddCategory = ({ setCategory }) => {
         <form onSubmit={searchGif}>
             <input type="text" placeholder="Search..."
                 onChange={e => setValue(e.target.value)}
+                value={value}
             />
         </form>
         { error ? <p className="error">El campo no puede estar vacio...</p> : "" }
