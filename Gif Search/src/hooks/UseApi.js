@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 const useApi = (url) => {
-    const [data, setData] = useState(null)
+    const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
     const fetchApi = () => {
         fetch(url)
-            .then(response => response.json())
-            .then(responseJson => {
+        .then(response => response.json())
+        .then(responseJson => {
                 setLoading(true);
                 setData(responseJson.data);
                 // console.log(responseJson);
@@ -16,7 +16,7 @@ const useApi = (url) => {
     }
     useEffect(() => {
         fetchApi();
-    },)
+    }, [url])
 
     return { data, loading }
 

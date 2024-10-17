@@ -5,17 +5,24 @@ import ImageItem from "./ImageItem";
 
 const DisplayGifs = ({ category }) => {
 
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=7zNfyzH5GZ7LYahlCfdPPuiujJUHtr2A&q=${category}&limit=15`;
+const url = `https://api.giphy.com/v1/gifs/search?api_key=7zNfyzH5GZ7LYahlCfdPPuiujJUHtr2A&q=${category}&limit=40`
+
     const { data, loading } = useApi(url);
+    
     return ( 
         <div className="container-gifs">
-            <h2>Display Gifs</h2>
+
             {
+              loading ?
                 data.map(img => (
-                    <ImageItem title={img.title} url={img.url} />
+                    <ImageItem key={img.id}
+                     title={img.title}
+                     url={img.images.downsized_medium.url} 
+                     
+                     />
                 ))
+                : ''
             }
-            {category}
         </div>
      );
 }
