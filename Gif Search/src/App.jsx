@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='App'>
       <h2>
-        Main component
+        Gif Search App
       </h2>
       <AddCategory setCategory={setCategory}/>
       <DisplayGifs category={category} />
