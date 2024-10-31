@@ -16,7 +16,6 @@ const AddCategory = ({ setCategory }) => {
         setError(false);
         setCategory(value);
         setValue("");
-        // console.log("Enter search");
         
     }
 
@@ -27,6 +26,8 @@ const AddCategory = ({ setCategory }) => {
                 onChange={e => setValue(e.target.value)}
                 value={value}
             />
+
+        {/* Condicional para mostrar un componente */}
         </form>
         { error ? <p className="error">El campo no puede estar vacio...</p> : "" }
         
