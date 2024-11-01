@@ -5,6 +5,8 @@ import ImageItem from "./ImageItem";
 
 const DisplayGifs = ({ category }) => {
 
+
+    // Aqui se utiliza una API para obtener los datos de los GIFs 
 const url = `https://api.giphy.com/v1/gifs/search?api_key=7zNfyzH5GZ7LYahlCfdPPuiujJUHtr2A&q=${category}&limit=40`
 
     const { data, loading } = useApi(url);
