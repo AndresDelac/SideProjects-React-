@@ -14,6 +14,8 @@ const url = `https://api.giphy.com/v1/gifs/search?api_key=7zNfyzH5GZ7LYahlCfdPPu
     return ( 
         <div className="container-gifs">
 
+
+        {/* se saca los datos de la API */}
             {
               loading ?
                 data.map(img => (
