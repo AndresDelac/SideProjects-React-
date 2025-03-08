@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import { query, collection, orderBy, onSnapshot, QuerySnapshot } from "firebase/firestore";
@@ -21,7 +22,7 @@ const Chat = () => {
     })
 
     return ( 
-        <section>
+        <section className="chat-content">
             {
                 messages && messages.map(item =>(
                     <Message
