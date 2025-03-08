@@ -3,8 +3,11 @@ import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth"
 
 const Login = () => {
-    const [usuario] = useAuthState(auth)
-    console.log(usuario);
+    const [user, loading, error] = useAuthState(auth);
+
+    console.log("Usuario:", user);
+    console.log("Cargando:", loading);
+    console.log("Error:", error);
     
     const googleLogin = () => {
         const provider = new GoogleAuthProvider();
