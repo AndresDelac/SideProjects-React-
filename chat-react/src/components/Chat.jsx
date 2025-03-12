@@ -1,31 +1,29 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
+import { query, collection, orderBy, onSnapshot, QuerySnapshot } from "firebase/firestore";
+import Message from "./Message";
+import SendMessage from "./SendMessage";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
-
 const Chat = () => {
-    const [user, loading, error] = useAuthState(auth);
+
     const [messages, setMessages] = useState([]);
+    const [user, loading, error] = useAuthState(auth);
+
 
     useEffect(() => {
-        if (user) {
-            fetchMessages();
-        }
-    }, [user]);
+        const newQuery = query(collection(db, "messages"), orderBy("timestamp"))
 
-    const fetchMessages = async () => {
-        try {
-            const querySnapshot = await getDocs(collection(db, "messages"));
-            const messagesList = querySnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setMessages(messagesList);
-        } catch (error) {
-            console.error("Error al obtener los mensajes:", error);
-        }
-    };
+        const unsuscribe = onSnapshot(newQuery, (QuerySnapshot) => {
+            let currentMessage = [];
+            QuerySnapshot.forEach(item => {
+                currentMessage.push({ content: item.data(), id:item.id  });
+                
+            })
+            setMessages(currentMessage);
+        })
+        return unsuscribe;
+    }, []);
 
     if (loading) {
         return <p>Cargando...</p>;
@@ -39,16 +37,19 @@ const Chat = () => {
         return <p>Por favor, inicia sesión para acceder al chat.</p>;
     }
 
-    return (
-        <div className="messages">
-            <h1>Chat</h1>
-            <ul>
-                {messages.map((message) => (
-                    <li key={message.id}>{message.text}</li>
-                ))}
-            </ul>
-        </div>
-    );
-};
-
+    return ( 
+        <section className="chat-content">
+            {
+                messages && messages.map(item =>(
+                    <Message
+                    key={item.id}
+                    message={item.content }
+                    />
+                ))
+            }
+            <SendMessage />
+        </section>
+     );
+}
+ 
 export default Chat;

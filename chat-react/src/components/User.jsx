@@ -13,9 +13,10 @@ const User = () => {
     return ( 
         
             <div className="right-side">
-                <h1>Chat rapido</h1>
+                <h1><i className="fa-regular fa-comments"></i>Chat rapido</h1>
+                
                 <article className="card-user">
-                    <img src={image} alt="user photo" />
+                    <img src={image} alt="user photo" referrerPolicy="no-referr" />
                     <p>{ name }</p>
                     { user ?  <Logout /> : <Login /> }
                 </article>
