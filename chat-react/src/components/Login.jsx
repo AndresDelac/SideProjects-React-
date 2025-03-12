@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 const Login = () => {
     const [ loading, error] = useAuthState(auth);
+    
 
     // console.log("Error:", error);
     console.log("Cargando:", loading);
@@ -28,6 +29,7 @@ const Login = () => {
     }
 
     return (
+        
         <button
             className="btn-login"
             onClick={googleLogin}
