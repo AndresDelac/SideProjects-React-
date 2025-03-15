@@ -5,7 +5,7 @@ import { auth } from "../firebase";
 
 const User = () => {
     const [user] = useAuthState(auth)
-    console.log(user);
+    // console.log(user);
 
     const image = user ? user.photoURL : "/userImage.png";
     const name = user ? user.displayName : "User name";
