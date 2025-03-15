@@ -17,6 +17,9 @@ const Message = ({ message }) => {
     return ( 
         <article className={newStyle}>
             <div>
+                {/* <button>
+                    <i className="fa-regular fa-trash"></i>
+                </button> */}
                 <div className="text-message">
                 <p className="text"> {message.text} </p>
                 </div>
