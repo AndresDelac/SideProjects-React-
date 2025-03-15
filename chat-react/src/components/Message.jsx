@@ -12,6 +12,8 @@ const Message = ({ message }) => {
     }
 
 
+
+
     return ( 
         <article className={newStyle}>
             <div>
