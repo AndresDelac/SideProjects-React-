@@ -34,6 +34,10 @@
     display: inline-block;
     order: 1;
   }
+  .name {
+    color: #000000; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
   .message img {
     width: 45px;
     height: 45px;
