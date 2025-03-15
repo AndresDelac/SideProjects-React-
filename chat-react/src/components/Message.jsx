@@ -20,6 +20,7 @@ const Message = ({ message }) => {
                 {/* <button>
                     <i className="fa-regular fa-trash"></i>
                 </button> */}
+                <p className="name"> {message.name} </p>
                 <div className="text-message">
                 <p className="text"> {message.text} </p>
                 </div>
