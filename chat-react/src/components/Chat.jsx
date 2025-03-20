@@ -11,6 +11,7 @@ const Chat = () => {
     const [user, loading, error] = useAuthState(auth);
 
 
+    // Trae los datos de firebase o mensajes previos
     useEffect(() => {
         const newQuery = query(collection(db, "messages"), orderBy("timestamp"))
 
